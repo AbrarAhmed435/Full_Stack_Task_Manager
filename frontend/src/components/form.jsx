@@ -42,7 +42,7 @@ function Form({ route, method }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="login_register_form">
         <h1>{name}</h1>
         <input
           type="email"
