@@ -21,9 +21,10 @@ export default function Home(){
         api.post('/api/tasks/',{title}).then((res)=>{
             if(res.status===201) {alert("New Task Added");
                 setTitle("")
+                  getTasks();
             }
             else alert("Failed to creat Task");
-            getTasks();
+          
         }).catch((err)=>{
             alert(err);
         });
@@ -48,8 +49,7 @@ export default function Home(){
     };
 
     return (
-        <div>
-            <div>
+            <div className="list_Container">
                 <form onSubmit={createTask}>
                     <input type="text" 
                     placeholder="Add new Task"
@@ -62,7 +62,7 @@ export default function Home(){
                 <h2>My Tasks</h2>
                 {tasks.length?
                 (tasks.map((task)=>
-              <div key={task.id}>
+              <div key={task.id} className="list">
                 <p>{task.title}</p>
                 <input type="checkbox" checked={task.completed} onChange={()=>toggleTask(task.id,task.completed)} />
                 <button onClick={()=>deleteTask(task.id)}>Delete</button>
@@ -70,7 +70,7 @@ export default function Home(){
                 ))
                 :<p> No task Added </p>}
             </div>
-        </div>
+        
 
     )
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 
@@ -41,7 +42,7 @@ function Form({ route, method }) {
   };
 
   return (
-    <div>
+    <div className="form_container">
       <form onSubmit={handleSubmit} className="login_register_form">
         <h1>{name}</h1>
         <input
@@ -62,6 +63,13 @@ function Form({ route, method }) {
           {loading ? "Please wait..." : name}
         </button>
       </form>
+   <div className="auth-toggle">
+  {method === "login" ? (
+    <p>Don't have an account? <Link to="/register" className="link">Register</Link></p>
+  ) : (
+    <p>Already have an account? <Link to="/login" className="link">Login</Link></p>
+  )}
+</div>
     </div>
   );
 }
